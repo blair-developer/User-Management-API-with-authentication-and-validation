@@ -1,13 +1,20 @@
-FROM node:20.11.1
+# Use official Node.js image
+FROM node:18
 
+# Create app directory inside container
 WORKDIR /app
 
+# Copy package files first (for caching)
 COPY package*.json ./
 
-RUN npm ci
+# Install dependencies
+RUN npm install
 
+# Copy all project files
 COPY . .
 
-EXPOSE 3000
+# Expose port
+EXPOSE 5000
 
-CMD ["npm", "start"]
+# Start app
+CMD ["node", "src/index.js"]

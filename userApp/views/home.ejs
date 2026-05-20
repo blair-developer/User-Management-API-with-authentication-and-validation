@@ -3,54 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Task Dashboard</title>
 
     <link rel="stylesheet" href="/style.css">
-
 </head>
 
 <body>
 
-    <a href="/logout" class="logout">Logout</a>
+<div class="dashboard">
 
-    <div class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h2 class="logo">TaskFlow</h2>
 
-        <h1>Dashboard</h1>
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Tasks</a>
+            <a href="#">Completed</a>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </nav>
+    </aside>
 
-        <!-- ✅ ADD TASK FORM -->
-        <div class="task-form">
-            <form action="/add-task" method="POST">
-                <input type="text" name="title" placeholder="Task Title" required>
-                <input type="text" name="description" placeholder="Task Description">
-                <button type="submit">Add Task</button>
-            </form>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <h1>Dashboard</h1>
+
+            <div class="stats">
+                <div class="card">
+                    <h3><%= tasks.length %></h3>
+                    <p>Total Tasks</p>
+                </div>
+
+                <div class="card">
+                    <h3>12</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
         </div>
 
-        <hr>
+        <!-- ADD TASK -->
+        <section class="task-form-section">
+            <form action="/add-task" method="POST" class="task-form">
 
-        <!-- ✅ TASK LIST -->
-        <div class="task-list">
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Task Title"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="description"
+                    placeholder="Task Description"
+                >
+
+                <button type="submit">
+                    + Add Task
+                </button>
+
+            </form>
+        </section>
+
+        <!-- TASK GRID -->
+        <section class="task-grid">
 
             <% if (tasks.length === 0) { %>
-                <p>No tasks yet. Add one above 👆</p>
+                <p>No tasks yet 👀</p>
             <% } %>
 
             <% tasks.forEach(task => { %>
-                <div class="task">
-                    <h3><%= task.title %></h3>
-                    <p><%= task.description %></p>
 
-                    <div class="actions">
-                        <a href="/edit-task/<%= task._id %>" class="edit">Edit</a>
-                        <a href="/delete-task/<%= task._id %>" class="delete"
-                           onclick="return confirm('Delete this task?')">Delete</a>
+                <div class="task-card">
+
+                    <div class="task-header">
+                        <h3><%= task.title %></h3>
                     </div>
+
+                    <p class="task-desc">
+                        <%= task.description %>
+                    </p>
+
+                    <div class="task-actions">
+
+                        <a
+                            href="/edit-task/<%= task._id %>"
+                            class="edit-btn"
+                        >
+                            Edit
+                        </a>
+
+                        <a
+                            href="/delete-task/<%= task._id %>"
+                            class="delete-btn"
+                            onclick="return confirm('Delete this task?')"
+                        >
+                            Delete
+                        </a>
+
+                    </div>
+
                 </div>
+
             <% }) %>
 
-        </div>
+        </section>
 
-    </div>
+    </main>
+
+</div>
 
 </body>
 </html>

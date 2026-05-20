@@ -4,6 +4,7 @@ const collection = require("./config");
 const bcrypt = require('bcrypt');
 const Task = require("./taskModel");
 const session = require('express-session');
+require("dotenv").config();
 
 const app = express();
 
@@ -21,6 +22,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: "secretkey",
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Use EJS as the view engine
 app.set("view engine", "ejs");

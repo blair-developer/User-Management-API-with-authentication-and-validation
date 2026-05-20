@@ -61,3 +61,269 @@ h2 {
   p {
     margin-top: 15px;
   }
+
+  h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .task-form {
+            margin-bottom: 30px;
+        }
+
+        .task-form input {
+            width: 48%;
+            padding: 10px;
+            margin: 5px 1%;
+        }
+
+        .task-form button {
+            width: 100%;
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .task-list {
+            margin-top: 20px;
+        }
+
+        .task {
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .edit {
+            background: orange;
+        }
+
+        .delete {
+            background: red;
+        }
+
+        .logout {
+            float: right;
+            background: black;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+}
+
+/* LAYOUT */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 220px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    padding: 30px 20px;
+}
+
+.logo {
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar nav a {
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar nav p{
+    color:#1d4ed8;
+}
+
+.sidebar nav a:hover,
+.sidebar nav .active {
+    background: #2563eb;
+    color: white;
+}
+
+.logout-btn {
+    margin-top: 40px;
+    background: #dc2626;
+    text-align: center;
+}
+
+/* MAIN */
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+/* TOPBAR */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    width: 140px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    font-size: 28px;
+    color: #2563eb;
+}
+
+/* FORM */
+
+.task-form-section {
+    margin-bottom: 30px;
+}
+
+.task-form {
+    display: flex;
+    gap: 15px;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+}
+
+.task-form input {
+    flex: 1;
+    min-width: 260px;
+    padding: 18px;
+    font-size: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    outline: none;
+}
+
+.task-form input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+}
+
+.task-form button {
+    padding: 18px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.task-form button:hover {
+    background: #1d4ed8;
+}
+
+/* TASK GRID */
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* TASK CARD */
+
+.task-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-header {
+    margin-bottom: 10px;
+}
+
+.task-desc {
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* ACTION BUTTONS */
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background: #10b981;
+}
+
+.delete-btn {
+    background: #ef4444;
+}
