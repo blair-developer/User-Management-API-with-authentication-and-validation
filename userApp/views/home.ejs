@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <a href="/logout" class="logout">Logout</a>
+
+    <div class="container">
+
+        <h1>Dashboard</h1>
+
+        <!-- ✅ ADD TASK FORM -->
+        <div class="task-form">
+            <form action="/add-task" method="POST">
+                <input type="text" name="title" placeholder="Task Title" required>
+                <input type="text" name="description" placeholder="Task Description">
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+
+        <hr>
+
+        <!-- ✅ TASK LIST -->
+        <div class="task-list">
+
+            <% if (tasks.length === 0) { %>
+                <p>No tasks yet. Add one above 👆</p>
+            <% } %>
+
+            <% tasks.forEach(task => { %>
+                <div class="task">
+                    <h3><%= task.title %></h3>
+                    <p><%= task.description %></p>
+
+                    <div class="actions">
+                        <a href="/edit-task/<%= task._id %>" class="edit">Edit</a>
+                        <a href="/delete-task/<%= task._id %>" class="delete"
+                           onclick="return confirm('Delete this task?')">Delete</a>
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
