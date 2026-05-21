@@ -13,8 +13,10 @@ RUN npm install
 # Copy all project files
 COPY . .
 
+ENV NODE_ENV=production
+
 # Expose port
 EXPOSE 5000
 
 # Start app
-CMD ["node", "src/index.js"]
+CMD ["nodemon", "src/index.js"]
