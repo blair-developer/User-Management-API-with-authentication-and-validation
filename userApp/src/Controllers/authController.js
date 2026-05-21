@@ -71,8 +71,11 @@ exports.loginUser = async (req, res) => {
         if (!isPasswordMatch) {
             return res.send("Wrong password");
         }
-
+         //Stores ID
         req.session.userId = check._id;
+
+        // Store username
+        req.session.username = check.name;
 
         res.redirect("/home");
 
