@@ -10,8 +10,30 @@ exports.getHome = async (req, res) => {
             userId: req.session.userId
         });
 
+        // ✅ Dashboard statistics
+        const totalTasks = tasks.length;
+
+        const completedTasks = tasks.filter(
+            task => task.status === "Completed"
+        ).length;
+
+        const pendingTasks = tasks.filter(
+            task => task.status === "Pending"
+        ).length;
+
+        // ✅ Render dashboard
         res.render("home", {
-            tasks: tasks
+
+            tasks: tasks,
+
+            // Username from session
+            username: req.session.username,
+
+            // Stats
+            totalTasks,
+            completedTasks,
+            pendingTasks
+
         });
 
     } catch (err) {
@@ -19,7 +41,15 @@ exports.getHome = async (req, res) => {
         console.error("Error fetching tasks:", err);
 
         res.render("home", {
-            tasks: []
+
+            tasks: [],
+
+            username: req.session.username,
+
+            totalTasks: 0,
+            completedTasks: 0,
+            pendingTasks: 0
+
         });
 
     }
