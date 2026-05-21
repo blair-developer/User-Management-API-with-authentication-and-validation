@@ -14,14 +14,23 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
+
         <h2 class="logo">TaskFlow</h2>
 
         <nav>
+
             <a href="#" class="active">Dashboard</a>
+
             <a href="#">Tasks</a>
+
             <a href="#">Completed</a>
-            <a href="/logout" class="logout-btn">Logout</a>
+
+            <a href="/logout" class="logout-btn">
+                Logout
+            </a>
+
         </nav>
+
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -29,23 +38,49 @@
 
         <!-- TOP BAR -->
         <div class="topbar">
-            <h1>Dashboard</h1>
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p class="welcome-text">
+                    Welcome,
+                    <strong><%= username %></strong> 👋
+                </p>
+            </div>
 
             <div class="stats">
+
                 <div class="card">
-                    <h3><%= tasks.length %></h3>
+
+                    <h3><%= totalTasks %></h3>
+
                     <p>Total Tasks</p>
+
                 </div>
 
                 <div class="card">
-                    <h3>12</h3>
+
+                    <h3><%= completedTasks %></h3>
+
                     <p>Completed</p>
+
                 </div>
+
+                <div class="card">
+
+                    <h3><%= pendingTasks %></h3>
+
+                    <p>Pending</p>
+
+                </div>
+
             </div>
+
         </div>
 
         <!-- ADD TASK -->
         <section class="task-form-section">
+
             <form action="/add-task" method="POST" class="task-form">
 
                 <input
@@ -66,13 +101,16 @@
                 </button>
 
             </form>
+
         </section>
 
         <!-- TASK GRID -->
         <section class="task-grid">
 
             <% if (tasks.length === 0) { %>
+
                 <p>No tasks yet 👀</p>
+
             <% } %>
 
             <% tasks.forEach(task => { %>
@@ -80,7 +118,18 @@
                 <div class="task-card">
 
                     <div class="task-header">
+
                         <h3><%= task.title %></h3>
+
+                        <!-- STATUS -->
+                        <span class="
+                            <%= task.status === 'Completed'
+                            ? 'status-completed'
+                            : 'status-pending' %>
+                        ">
+                            <%= task.status %>
+                        </span>
+
                     </div>
 
                     <p class="task-desc">
@@ -88,6 +137,18 @@
                     </p>
 
                     <div class="task-actions">
+
+                        <!-- COMPLETE BUTTON -->
+                        <% if (task.status !== "Completed") { %>
+
+                            <a
+                                href="/complete-task/<%= task._id %>"
+                                class="complete-btn"
+                            >
+                                Complete
+                            </a>
+
+                        <% } %>
 
                         <a
                             href="/edit-task/<%= task._id %>"
