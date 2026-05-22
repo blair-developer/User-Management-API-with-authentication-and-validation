@@ -24,11 +24,23 @@ const Loginschema = new mongoose.Schema({
         default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
     },
 
+    bio: {
+        type: String,
+        default: "TaskFlow User"
+    },
+
+    location: {
+        type: String,
+        default: "Unknown"
+    },
+
     password: {
         type: String,
         required: true
     }
 
+}, {
+    timestamps: true
 });
 
 const collection = mongoose.model("users", Loginschema);
