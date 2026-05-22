@@ -2,46 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp</title>
+
+    <title>Create Account</title>
+
     <link rel="stylesheet" href="/style.css">
+
     <style>
 
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
 
             font-family: Arial, Helvetica, sans-serif;
 
-            height: 100vh;
+            min-height: 100vh;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             background: linear-gradient(135deg, #667eea, #764ba2);
+
+            padding: 20px;
         }
 
         .form-container {
 
-            width: 350px;
+            width: 420px;
 
             background: white;
 
             padding: 35px;
 
-            border-radius: 15px;
+            border-radius: 20px;
 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 
             animation: fadeIn 0.7s ease;
         }
 
-        .icon {
+        .logo {
 
             text-align: center;
 
-            font-size: 45px;
+            font-size: 55px;
 
             margin-bottom: 10px;
         }
@@ -50,13 +62,25 @@
 
             text-align: center;
 
-            margin-bottom: 25px;
-
             color: #333;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #777;
+
+            margin-bottom: 30px;
+
+            font-size: 14px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+
+            margin-bottom: 18px;
         }
 
         .form-group label {
@@ -65,20 +89,20 @@
 
             margin-bottom: 8px;
 
-            font-weight: bold;
-
             color: #444;
+
+            font-weight: bold;
         }
 
         .form-group input {
 
             width: 100%;
 
-            padding: 12px;
+            padding: 12px 14px;
 
             border: 1px solid #ccc;
 
-            border-radius: 8px;
+            border-radius: 10px;
 
             font-size: 15px;
 
@@ -91,18 +115,18 @@
 
             outline: none;
 
-            box-shadow: 0 0 8px rgba(102,126,234,0.4);
+            box-shadow: 0 0 10px rgba(102,126,234,0.3);
         }
 
         .submit-btn {
 
             width: 100%;
 
-            padding: 12px;
+            padding: 14px;
 
             border: none;
 
-            border-radius: 8px;
+            border-radius: 10px;
 
             background: linear-gradient(to right, #667eea, #764ba2);
 
@@ -119,21 +143,21 @@
 
         .submit-btn:hover {
 
-            transform: scale(1.03);
+            transform: translateY(-2px);
 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
-        p {
-
-            text-align: center;
+        .bottom-text {
 
             margin-top: 20px;
 
-            color: #555;
+            text-align: center;
+
+            color: #666;
         }
 
-        .link {
+        .bottom-text a {
 
             text-decoration: none;
 
@@ -142,41 +166,168 @@
             font-weight: bold;
         }
 
-        .link:hover {
+        .bottom-text a:hover {
+
             text-decoration: underline;
         }
 
         @keyframes fadeIn {
 
             from {
+
                 opacity: 0;
+
                 transform: translateY(-20px);
             }
 
             to {
+
                 opacity: 1;
+
                 transform: translateY(0);
             }
         }
 
     </style>
+
 </head>
+
 <body>
 
     <div class="form-container">
-        <h2>SignUp</h2>
-        <form action="/signup" method="post">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="username" placeholder="Enter your name" required autocomplete="off">
-          </div>
-          <div class="form-group">
-            <label for="password">password:</label>
-            <input type="password" id="password" name="password" placeholder="password" required>
-          </div>
-          <button type="submit" class="submit-btn">Submit</button>
+
+        <div class="logo">
+            🚀
+        </div>
+
+        <h2>Create Your Account</h2>
+
+        <p class="subtitle">
+            Join TaskFlow and manage your tasks smarter
+        </p>
+
+        <form action="/signup" method="POST">
+
+            <!-- FULL NAME -->
+            <div class="form-group">
+
+                <label for="fullname">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+            <!-- USERNAME -->
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Choose a username"
+                    required
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <!-- PROFILE IMAGE -->
+            <div class="form-group">
+
+                <label for="profileImage">
+                    Profile Image URL
+                </label>
+
+                <input
+                    type="text"
+                    id="profileImage"
+                    name="profileImage"
+                    placeholder="Paste image URL (optional)"
+                >
+
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create password"
+                    required
+                >
+
+            </div>
+
+            <!-- CONFIRM PASSWORD -->
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm password"
+                    required
+                >
+
+            </div>
+
+            <!-- BUTTON -->
+            <button type="submit" class="submit-btn">
+                Create Account
+            </button>
+
         </form>
-      </div>
-    
+
+        <div class="bottom-text">
+
+            Already have an account?
+
+            <a href="/">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
