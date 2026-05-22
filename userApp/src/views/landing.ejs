@@ -11,8 +11,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet"
 />
     <link rel="stylesheet" href="/output.css"/>
@@ -23,13 +22,37 @@ rel="stylesheet"
     <!-- Header -->
     <header>
       <nav class="container flex items-center py-4 mt-4 sm:mt-12">
-        <div class="py-1"><img src="./imgs/logo-bookmark.svg" alt="" /></div>
+        <div class="py-1"><img src="/imgs/logo-bookmark.svg" alt="" /></div>
         <ul class="hidden sm:flex flex-1 justify-end items-center gap-12 text-bookmark-blue uppercase text-xs">
-          <li class="cursor-pointer">Features</li>
-          <li class="cursor-pointer">Pricing</li>
-          <li class="cursor-pointer">Contact</li>
-          <button type="button" class="bg-bookmark-red text-white rounded-md px-7 py-3 uppercase">Login</button>
-        </ul>
+
+  <li>
+    <a href="/features" class="cursor-pointer hover:text-bookmark-purple transition duration-300">
+      Features
+    </a>
+  </li>
+
+  <li>
+    <a href="/pricing" class="cursor-pointer hover:text-bookmark-purple transition duration-300">
+      Pricing
+    </a>
+  </li>
+
+  <li>
+    <a href="/contact" class="cursor-pointer hover:text-bookmark-purple transition duration-300">
+      Contact
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="/login"
+      class="bg-bookmark-red text-white rounded-md px-7 py-3 uppercase hover:bg-red-400 transition duration-300"
+    >
+      Login
+    </a>
+  </li>
+
+</ul>
         <div class="flex sm:hidden flex-1 justify-end">
           <i class="text-2xl fas fa-bars"></i>
         </div>
