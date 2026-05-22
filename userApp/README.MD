@@ -1,77 +1,181 @@
-# TaskFlow Dashboard
+# TaskFlow - Task Management System
 
-A full-stack task management dashboard built with:
+TaskFlow is a full-stack task management web application built using Node.js, Express, MongoDB, EJS, TailwindCSS, and Docker.
+
+The system allows users to:
+
+- Register accounts
+- Login securely
+- Create tasks
+- Edit tasks
+- Delete tasks
+- Track task status
+- View dashboard statistics
+- Manage personalized task lists
+
+---
+
+# Features
+
+## Authentication System
+- User Signup
+- User Login
+- Session Authentication
+- Secure Password Hashing using bcrypt
+- Logout Functionality
+
+## Task Management
+- Add Tasks
+- Edit Tasks
+- Delete Tasks
+- Task Status Management
+- Dashboard Statistics
+
+## Frontend
+- Responsive Landing Page
+- TailwindCSS Integration
+- EJS Templating Engine
+- Responsive Dashboard UI
+
+## Backend
+- MVC Architecture
+- MongoDB Atlas Database
+- Express Sessions
+- REST-style Routing
+
+## DevOps
+- Dockerized Application
+- Docker Compose Setup
+- Environment Variables
+
+---
+
+# Technologies Used
 
 - Node.js
 - Express.js
-- MongoDB
-- EJS
-- Docker
-
-## Features
-
-- User Authentication
-- Signup/Login
-- Password Hashing with bcrypt
-- Session Authentication
-- CRUD Operations
-- Task Status Management
-- Dashboard Statistics
-- MVC Architecture
-- Dockerized Application
-- MongoDB Atlas Integration
-
-## Technologies Used
-
-- Node.js
-- Express
-- MongoDB
+- MongoDB Atlas
 - Mongoose
 - EJS
-- CSS
+- TailwindCSS
 - Docker
+- Express Session
+- bcrypt
 
-## Project Structure
+---
 
-```bash
-src/
-├── config/
-├── controllers/
-├── middleware/
-├── models/
-├── routes/
-├── views/
-├── public/
-└── index.js
+# Project Structure
+
+```plaintext
+userApp/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── public/
+│   ├── publicessentials/
+│   ├── routes/
+│   ├── views/
+│   ├── input.css
+│   └── index.js
+│
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+├── tailwind.config.js
+└── README.md
 ```
 
-## Installation
+---
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone <your-repository-link>
+cd userApp
+```
+
+---
+
+# Install Dependencies
 
 ```bash
 npm install
-npm start
 ```
 
-## Docker
+---
 
-Build image:
+# Environment Variables
+
+Create a `.env` file:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+```
+
+---
+
+# Run Project
+
+## Development Mode
+
+```bash
+npm run dev
+```
+
+---
+
+# TailwindCSS
+
+Run Tailwind watcher:
+
+```bash
+npm run build:tailwind
+```
+
+---
+
+# Docker Setup
+
+## Build Docker Image
 
 ```bash
 docker build -t userapp .
 ```
 
-Run container:
+## Run Docker Container
 
 ```bash
 docker run -p 5000:5000 --env-file .env userapp
 ```
 
-## Environment Variables
+---
 
-Create `.env`
+# Docker Compose
 
-```env
-MONGO_URI=mongodb+srv://blairdeveloper17_db_user:TuRQqncXuQcKlZos@cluster0.kvqukfq.mongodb.net/users?retryWrites=true&w=majority&appName=Cluster0
+Run:
+
+```bash
+docker-compose up
 ```
 
-## Author
+---
+
+# Future Improvements
+
+- Task Categories
+- File Uploads
+- Notifications
+- Email Verification
+- Search & Filtering
+- Dark Mode
+- Team Collaboration
+- Task Priority Levels
+
+---
+
+# Author
