@@ -1,14 +1,14 @@
 const isAuthenticated = (req, res, next) => {
 
+    console.log("AUTH SESSION:", req.session);
+
     if (req.session && req.session.userId) {
 
-        next();
-
-    } else {
-
-        res.redirect("/login");
+        return next();
 
     }
+
+    return res.redirect("/login");
 
 };
 
