@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+
+<div class="profile-container">
+
+    <img
+        src="<%= user.profileImage %>"
+        class="profile-avatar"
+    >
+
+    <h1><%= user.fullname %></h1>
+
+    <p>@<%= user.name %></p>
+
+    <p><%= user.email %></p>
+
+    <p><%= user.bio %></p>
+
+    <p><%= user.location %></p>
+
+    <div class="profile-stats">
+
+        <div>
+            <h2><%= totalTasks %></h2>
+            <p>Total Tasks</p>
+        </div>
+
+        <div>
+            <h2><%= completedTasks %></h2>
+            <p>Completed</p>
+        </div>
+
+        <div>
+            <h2><%= pendingTasks %></h2>
+            <p>Pending</p>
+        </div>
+
+    </div>
+
+    <a href="/edit-profile">
+        Edit Profile
+    </a>
+
+</div>
+
+</body>
+</html>
