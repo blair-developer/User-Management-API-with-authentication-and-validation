@@ -12,9 +12,13 @@ const taskRoutes = require("./routes/taskRoutes");
 
 const profileRoutes = require("./routes/profileRoutes");
 
+const adminRoutes = require("./routes/adminRoutes");
+
 const app = express();
 
 app.use(profileRoutes);
+
+app.use(adminRoutes);
 
 app.use(express.json());
 

@@ -1,0 +1,45 @@
+<h1>Admin Dashboard</h1>
+
+<h2>Total Users: <%= totalUsers %></h2>
+
+<h2>Total Tasks: <%= totalTasks %></h2>
+
+<h2>Completed Tasks: <%= completedTasks %></h2>
+
+<h2>Pending Tasks: <%= pendingTasks %></h2>
+
+<hr>
+
+<h2>Users</h2>
+
+<% users.forEach(user => { %>
+
+    <div>
+
+        <p><%= user.name %></p>
+
+        <a href="/admin/delete-user/<%= user._id %>">
+            Delete User
+        </a>
+
+    </div>
+
+<% }) %>
+
+<hr>
+
+<h2>Tasks</h2>
+
+<% tasks.forEach(task => { %>
+
+    <div>
+
+        <p><%= task.title %></p>
+
+        <a href="/admin/delete-task/<%= task._id %>">
+            Delete Task
+        </a>
+
+    </div>
+
+<% }) %>
