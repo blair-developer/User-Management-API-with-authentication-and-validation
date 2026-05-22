@@ -1,45 +1,376 @@
-<h1>Admin Dashboard</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
-<h2>Total Users: <%= totalUsers %></h2>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h2>Total Tasks: <%= totalTasks %></h2>
+    <title>Admin Dashboard</title>
 
-<h2>Completed Tasks: <%= completedTasks %></h2>
+    <link rel="stylesheet" href="./css/style.css">
 
-<h2>Pending Tasks: <%= pendingTasks %></h2>
+    <style>
 
-<hr>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
 
-<h2>Users</h2>
+        body{
+            background:#f4f7fc;
+        }
 
-<% users.forEach(user => { %>
+        .dashboard{
+            display:flex;
+            min-height:100vh;
+        }
 
-    <div>
+        /* SIDEBAR */
 
-        <p><%= user.name %></p>
+        .sidebar{
+            width:260px;
+            background:linear-gradient(180deg,#4f46e5,#7c3aed);
+            color:white;
+            padding:30px 20px;
+        }
 
-        <a href="/admin/delete-user/<%= user._id %>">
-            Delete User
-        </a>
+        .logo{
+            font-size:28px;
+            font-weight:bold;
+            margin-bottom:40px;
+        }
 
-    </div>
+        .sidebar nav{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
 
-<% }) %>
+        .sidebar nav a{
+            text-decoration:none;
+            color:white;
+            padding:14px;
+            border-radius:10px;
+            transition:0.3s;
+            font-weight:bold;
+        }
 
-<hr>
+        .sidebar nav a:hover{
+            background:rgba(255,255,255,0.2);
+        }
 
-<h2>Tasks</h2>
+        /* MAIN */
 
-<% tasks.forEach(task => { %>
+        .main-content{
+            flex:1;
+            padding:30px;
+        }
 
-    <div>
+        .topbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
 
-        <p><%= task.title %></p>
+        .topbar h1{
+            color:#333;
+        }
 
-        <a href="/admin/delete-task/<%= task._id %>">
-            Delete Task
-        </a>
+        /* CARDS */
 
-    </div>
+        .stats-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+            margin-bottom:40px;
+        }
 
-<% }) %>
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .card h2{
+            font-size:35px;
+            color:#4f46e5;
+            margin-bottom:10px;
+        }
+
+        .card p{
+            color:#666;
+            font-size:15px;
+        }
+
+        /* TABLES */
+
+        .table-section{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            margin-bottom:30px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .table-section h2{
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table th{
+            background:#4f46e5;
+            color:white;
+            padding:15px;
+            text-align:left;
+        }
+
+        table td{
+            padding:15px;
+            border-bottom:1px solid #eee;
+        }
+
+        .delete-btn{
+            text-decoration:none;
+            background:#ef4444;
+            color:white;
+            padding:8px 14px;
+            border-radius:8px;
+            transition:0.3s;
+        }
+
+        .delete-btn:hover{
+            background:#dc2626;
+        }
+
+        .status{
+            padding:6px 12px;
+            border-radius:20px;
+            font-size:13px;
+            font-weight:bold;
+        }
+
+        .completed{
+            background:#dcfce7;
+            color:#166534;
+        }
+
+        .pending{
+            background:#fee2e2;
+            color:#991b1b;
+        }
+
+        @media(max-width:768px){
+
+            .dashboard{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                width:100%;
+            }
+
+            table{
+                font-size:14px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2 class="logo">AdminPanel</h2>
+
+        <nav>
+
+            <a href="/admin/dashboard">Dashboard</a>
+
+            <a href="/home">User Dashboard</a>
+
+            <a href="#">Analytics</a>
+
+            <a href="#">Settings</a>
+
+            <a href="/logout">Logout</a>
+
+        </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h1>Admin Dashboard</h1>
+
+        </div>
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+            <div class="card">
+                <h2><%= totalUsers %></h2>
+                <p>Total Users</p>
+            </div>
+
+            <div class="card">
+                <h2><%= totalTasks %></h2>
+                <p>Total Tasks</p>
+            </div>
+
+            <div class="card">
+                <h2><%= completedTasks %></h2>
+                <p>Completed Tasks</p>
+            </div>
+
+            <div class="card">
+                <h2><%= pendingTasks %></h2>
+                <p>Pending Tasks</p>
+            </div>
+
+        </div>
+
+        <!-- USERS TABLE -->
+
+        <section class="table-section">
+
+            <h2>Manage Users</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% users.forEach(user => { %>
+
+                        <tr>
+
+                            <td><%= user.name %></td>
+
+                            <td><%= user.email %></td>
+
+                            <td><%= user.role %></td>
+
+                            <td>
+
+                                <a
+                                    href="/admin/delete-user/<%= user._id %>"
+                                    class="delete-btn"
+                                    onclick="return confirm('Delete this user?')"
+                                >
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- TASKS TABLE -->
+
+        <section class="table-section">
+
+            <h2>Manage Tasks</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% tasks.forEach(task => { %>
+
+                        <tr>
+
+                            <td><%= task.title %></td>
+
+                            <td><%= task.description %></td>
+
+                            <td>
+
+                                <span class="status <%= task.status === 'Completed' ? 'completed' : 'pending' %>">
+
+                                    <%= task.status %>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="/admin/delete-task/<%= task._id %>"
+                                    class="delete-btn"
+                                    onclick="return confirm('Delete this task?')"
+                                >
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -16,10 +16,6 @@ const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
-app.use(profileRoutes);
-
-app.use(adminRoutes);
-
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
@@ -41,6 +37,10 @@ app.set("views", path.join(__dirname, "views"));
 app.use(authRoutes);
 
 app.use(taskRoutes);
+
+app.use(profileRoutes);
+
+app.use(adminRoutes);
 
 const port = 5000;
 
