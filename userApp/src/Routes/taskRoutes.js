@@ -36,4 +36,10 @@ router.post(
     taskController.editTask
 );
 
+router.get(
+    "/complete-task/:id",
+    isAuthenticated,
+    taskController.completeTask
+);
+
 module.exports = router;
