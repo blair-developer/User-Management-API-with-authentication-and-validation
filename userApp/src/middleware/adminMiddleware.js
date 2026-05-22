@@ -5,19 +5,18 @@ const isAdmin = async (req, res, next) => {
     try {
 
         if (!req.session.userId) {
-
             return res.redirect("/login");
         }
 
         const user = await User.findById(req.session.userId);
 
-        if (!user) {
+        console.log(user);
 
-            return res.redirect("/login");
+        if (!user) {
+            return res.send("No user found");
         }
 
         if (user.role !== "admin") {
-
             return res.send("Access Denied");
         }
 
@@ -27,7 +26,7 @@ const isAdmin = async (req, res, next) => {
 
         console.log(err);
 
-        res.send("Admin Middleware Error");
+        res.send("Admin middleware error");
 
     }
 
