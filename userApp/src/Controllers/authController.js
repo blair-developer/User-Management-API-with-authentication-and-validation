@@ -4,6 +4,10 @@ const collection = require("../models/User");
 
 const bcrypt = require("bcrypt");
 
+exports.getLanding = (req, res) => {
+    res.render("landing");
+};
+
 exports.getLogin = (req, res) => {
 
     res.render("login");
