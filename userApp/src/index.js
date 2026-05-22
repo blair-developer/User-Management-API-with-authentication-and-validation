@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.static(path.join(__dirname, "publicEssentials")));
 
+//app.use("/uploads", express.static("uploads"));
+
 app.use(session({
     secret: "mysecretkey",
     resave: false,
