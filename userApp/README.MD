@@ -71,7 +71,7 @@ docker run -p 5000:5000 --env-file .env userapp
 Create `.env`
 
 ```env
-MONGO_URI=your_mongodb_connection
+MONGO_URI=mongodb+srv://blairdeveloper17_db_user:TuRQqncXuQcKlZos@cluster0.kvqukfq.mongodb.net/users?retryWrites=true&w=majority&appName=Cluster0
 ```
 
 ## Author
