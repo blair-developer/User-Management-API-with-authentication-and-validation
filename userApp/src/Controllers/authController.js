@@ -141,6 +141,8 @@ exports.loginUser = async (req, res) => {
 
         req.session.username = check.name;
 
+        console.log(req.session);
+
         req.session.fullname = check.fullname;
 
         req.session.profileImage = check.profileImage;
