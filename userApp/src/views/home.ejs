@@ -2,65 +2,393 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Dashboard</title>
+
+    <title>TaskFlow Dashboard</title>
 
     <link rel="stylesheet" href="/style.css">
+
     <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f5f7fb;
+        }
+
+        .dashboard {
+
+            display: flex;
+
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+
+            width: 250px;
+
+            background: #111827;
+
+            color: white;
+
+            padding: 30px 20px;
+        }
+
+        .logo {
+
+            margin-bottom: 40px;
+
+            font-size: 28px;
+
+            text-align: center;
+
+            color: #60a5fa;
+        }
+
+        .sidebar nav {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        .sidebar nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav .active {
+
+            background: #2563eb;
+        }
+
+        .logout-btn {
+
+            margin-top: 20px;
+
+            background: #dc2626;
+        }
+
+        /* MAIN */
+
+        .main-content {
+
+            flex: 1;
+
+            padding: 30px;
+        }
+
+        /* TOPBAR */
+
+        .topbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .welcome-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .avatar {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 3px solid #2563eb;
+        }
+
         .welcome-text {
 
-    margin-top: 5px;
+            color: #666;
 
-    color: #666;
+            margin-top: 5px;
+        }
 
-    font-size: 16px;
-}
+        /* STATS */
 
-.status-completed {
+        .stats {
 
-    background: #22c55e;
+            display: flex;
 
-    color: white;
+            gap: 20px;
+        }
 
-    padding: 5px 10px;
+        .card {
 
-    border-radius: 20px;
+            background: white;
 
-    font-size: 12px;
-}
+            padding: 20px;
 
-.status-pending {
+            border-radius: 12px;
 
-    background: #f59e0b;
+            min-width: 140px;
 
-    color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 
-    padding: 5px 10px;
+            text-align: center;
+        }
 
-    border-radius: 20px;
+        .card h3 {
 
-    font-size: 12px;
-}
+            font-size: 28px;
 
-.complete-btn {
+            color: #2563eb;
+        }
 
-    background: #22c55e;
+        /* TASK FORM */
 
-    color: white;
+        .task-form-section {
 
-    padding: 8px 12px;
+            background: white;
 
-    border-radius: 6px;
+            padding: 20px;
 
-    text-decoration: none;
+            border-radius: 12px;
 
-    font-size: 14px;
-}
+            margin-bottom: 25px;
 
-.complete-btn:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
 
-    opacity: 0.9;
-}
+        .task-form {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .task-form input,
+        .task-form select {
+
+            flex: 1;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+        }
+
+        .task-form button {
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .task-form button:hover {
+
+            background: #1d4ed8;
+        }
+
+        /* FILTERS */
+
+        .filter-bar {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            border: 1px solid #ccc;
+        }
+
+        .filter-bar button {
+
+            padding: 10px 20px;
+
+            background: #111827;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        /* TASK GRID */
+
+        .task-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+            gap: 20px;
+        }
+
+        .task-card {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .task-card:hover {
+
+            transform: translateY(-5px);
+        }
+
+        .task-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+        .task-desc {
+
+            color: #555;
+
+            margin-bottom: 15px;
+        }
+
+        .category {
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+        }
+
+        .status-completed {
+
+            background: #22c55e;
+
+            color: white;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+        }
+
+        .status-pending {
+
+            background: #f59e0b;
+
+            color: white;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+        }
+
+        .task-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .task-actions a {
+
+            text-decoration: none;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            color: white;
+
+            font-size: 14px;
+        }
+
+        .complete-btn {
+
+            background: #22c55e;
+        }
+
+        .edit-btn {
+
+            background: #2563eb;
+        }
+
+        .delete-btn {
+
+            background: #dc2626;
+        }
+
     </style>
 </head>
 
@@ -69,17 +397,24 @@
 <div class="dashboard">
 
     <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
         <h2 class="logo">TaskFlow</h2>
 
         <nav>
 
-            <a href="#" class="active">Dashboard</a>
+            <a href="/home" class="active">
+                Dashboard
+            </a>
 
-            <a href="#">Tasks</a>
+            <a href="/profile">
+                Profile
+            </a>
 
-            <a href="#">Completed</a>
+            <a href="/home?status=Completed">
+                Completed
+            </a>
 
             <a href="/logout" class="logout-btn">
                 Logout
@@ -90,19 +425,35 @@
     </aside>
 
     <!-- MAIN CONTENT -->
+
     <main class="main-content">
 
-        <!-- TOP BAR -->
+        <!-- TOPBAR -->
+
         <div class="topbar">
 
-            <div>
-                <h1>Dashboard</h1>
+            <div class="welcome-box">
 
-                <p class="welcome-text">
-                    Welcome,
-                    <strong><%= username %></strong> 👋
-                </p>
+                <img
+                    src="<%= profileImage %>"
+                    class="avatar"
+                >
+
+                <div>
+
+                    <h1>
+                        Welcome, <%= fullname %> 👋
+                    </h1>
+
+                    <p class="welcome-text">
+                        Manage your productivity today
+                    </p>
+
+                </div>
+
             </div>
+
+            <!-- STATS -->
 
             <div class="stats">
 
@@ -135,6 +486,7 @@
         </div>
 
         <!-- ADD TASK -->
+
         <section class="task-form-section">
 
             <form action="/add-task" method="POST" class="task-form">
@@ -152,6 +504,20 @@
                     placeholder="Task Description"
                 >
 
+                <select name="category">
+
+                    <option value="General">General</option>
+
+                    <option value="Work">Work</option>
+
+                    <option value="School">School</option>
+
+                    <option value="Personal">Personal</option>
+
+                    <option value="Urgent">Urgent</option>
+
+                </select>
+
                 <button type="submit">
                     + Add Task
                 </button>
@@ -160,7 +526,48 @@
 
         </section>
 
+        <!-- FILTERS -->
+
+        <form method="GET" action="/home" class="filter-bar">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search tasks"
+            >
+
+            <select name="status">
+
+                <option value="">All Status</option>
+
+                <option value="Pending">Pending</option>
+
+                <option value="Completed">Completed</option>
+
+            </select>
+
+            <select name="category">
+
+                <option value="">All Categories</option>
+
+                <option value="Work">Work</option>
+
+                <option value="School">School</option>
+
+                <option value="Personal">Personal</option>
+
+                <option value="Urgent">Urgent</option>
+
+            </select>
+
+            <button type="submit">
+                Filter
+            </button>
+
+        </form>
+
         <!-- TASK GRID -->
+
         <section class="task-grid">
 
             <% if (tasks.length === 0) { %>
@@ -177,7 +584,6 @@
 
                         <h3><%= task.title %></h3>
 
-                        <!-- STATUS -->
                         <span class="
                             <%= task.status === 'Completed'
                             ? 'status-completed'
@@ -189,13 +595,22 @@
                     </div>
 
                     <p class="task-desc">
+
                         <%= task.description %>
+
                     </p>
+
+                    <span class="category">
+
+                        <%= task.category %>
+
+                    </span>
+
+                    <br><br>
 
                     <div class="task-actions">
 
-                        <!-- COMPLETE BUTTON -->
-                        <% if (task.status !== "Completed") { %>
+                        <% if (task.status !== 'Completed') { %>
 
                             <a
                                 href="/complete-task/<%= task._id %>"
