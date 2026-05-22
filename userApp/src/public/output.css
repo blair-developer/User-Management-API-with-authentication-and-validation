@@ -682,12 +682,24 @@ video {
   height: 20rem;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
+.h-20 {
+  height: 5rem;
+}
+
 .w-2\/4 {
   width: 50%;
 }
 
 .w-5\/6 {
   width: 83.333333%;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .max-w-screen-lg {
@@ -763,6 +775,10 @@ video {
   border-radius: 0.375rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .rounded-l-full {
   border-top-left-radius: 9999px;
   border-bottom-left-radius: 9999px;
@@ -800,6 +816,11 @@ video {
 .bg-bookmark-white {
   --tw-bg-opacity: 1;
   background-color: rgb(247 247 247 / var(--tw-bg-opacity));
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-6 {
