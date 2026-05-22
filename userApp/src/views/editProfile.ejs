@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+</head>
+<body>
+
+<form action="/edit-profile" method="POST">
+
+    <input
+        type="text"
+        name="fullname"
+        value="<%= user.fullname %>"
+    >
+
+    <input
+        type="email"
+        name="email"
+        value="<%= user.email %>"
+    >
+
+    <input
+        type="text"
+        name="profileImage"
+        value="<%= user.profileImage %>"
+    >
+
+    <textarea name="bio"><%= user.bio %></textarea>
+
+    <input
+        type="text"
+        name="location"
+        value="<%= user.location %>"
+    >
+
+    <button type="submit">
+        Save Changes
+    </button>
+
+</form>
+
+</body>
+</html>
