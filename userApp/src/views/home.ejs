@@ -145,6 +145,42 @@
 
         </section>
 
+        <!-- CREATE TEAM -->
+
+<section class="task-form-section">
+
+    <h2 class="section-title">
+        Create Team Workspace
+    </h2>
+
+    <form
+        action="/teams/create"
+        method="POST"
+        class="task-form"
+    >
+
+        <input
+            type="text"
+            name="teamName"
+            placeholder="Team Name"
+            required
+        >
+
+        <input
+            type="text"
+            name="description"
+            placeholder="Team Description"
+        >
+
+        <button type="submit">
+            + Create Team
+        </button>
+
+           </form>
+
+         </section>
+
+
         <!-- FILTERS -->
 
         <form method="GET" action="/home" class="filter-bar">
