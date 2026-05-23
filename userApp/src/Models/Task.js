@@ -11,7 +11,7 @@ const taskSchema = new mongoose.Schema({
         type: String
     },
 
-     category: {
+    category: {
         type: String,
         default: "General"
     },
@@ -21,16 +21,45 @@ const taskSchema = new mongoose.Schema({
         default: "Pending"
     },
 
-    userId: {
+    priority: {
         type: String,
+        enum: ["Low", "Medium", "High"],
+        default: "Medium"
+    },
+
+    dueDate: {
+        type: Date
+    },
+
+    // Task creator
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
         required: true
-    }
+    },
+
+    // Assigned user
+    assignedTo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    },
+
+    // Team workspace
+    teamId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Team"
+    },
+
+    attachments: [
+        {
+            type: String
+        }
+    ]
 
 },
-  {
+{
     timestamps: true
-}
-);
+});
 
 const Task = mongoose.model("Task", taskSchema);
 
