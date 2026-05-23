@@ -69,8 +69,7 @@ rel="stylesheet"
             A Simple Taskflow to Organize Your Tasks
           </h2>
           <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">
-            A clean and simple interface to organize your favourite websites. Open a new browser tab and see your sites
-            load instantly. Try it for free.
+            A simple, repeatable taskflow prevents cognitive overload and keeps your day structured. By treating your tasks like a production line, you ensure that new responsibilities are quickly processed, prioritized, and completed without losing track of important work.
           </p>
           <div class="flex justify-center flex-wrap gap-6">
             <button type="button" class="btn btn-purple hover:bg-bookmark-white hover:text-black">
@@ -112,7 +111,7 @@ rel="stylesheet"
       <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
         <h1 class="text-3xl text-center text-bookmark-blue">Features</h1>
         <p class="text-center text-bookmark-grey mt-4">
-          Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between
+          Our aim is to make it quick and easy for you to access your favourite taskflow tool. Your bookmarks sync between
           your devices so you can access them on the go.
         </p>
       </div>
@@ -358,5 +357,55 @@ rel="stylesheet"
         </div>
       </div>
     </footer>
+    <script>
+  // OPEN MODAL
+  function openFeature(title, text) {
+    document.getElementById("modalTitle").innerText = title;
+    document.getElementById("modalText").innerText = text;
+
+    const modal = document.getElementById("featureModal");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+  }
+
+  // CLOSE MODAL
+  function closeModal() {
+    const modal = document.getElementById("featureModal");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  }
+
+  // CLOSE ON OUTSIDE CLICK
+  window.onclick = function(event) {
+    const modal = document.getElementById("featureModal");
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  // FAQ TOGGLE
+  function toggleFaq(el) {
+    const answer = el.nextElementSibling;
+
+    if (answer.classList.contains("hidden")) {
+      answer.classList.remove("hidden");
+    } else {
+      answer.classList.add("hidden");
+    }
+  }
+</script>
+    <!-- FEATURE MODAL -->
+<div id="featureModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white rounded-xl p-6 w-11/12 md:w-1/2 shadow-lg relative animate-fadeIn">
+
+    <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl">
+      ✕
+    </button>
+
+    <h2 id="modalTitle" class="text-2xl font-bold text-bookmark-blue mb-4"></h2>
+    <p id="modalText" class="text-gray-600"></p>
+
+  </div>
+</div>
   </body>
 </html>
