@@ -14,6 +14,8 @@ const profileRoutes = require("./routes/profileRoutes");
 
 const adminRoutes = require("./routes/adminRoutes");
 
+const teamRoutes = require("./routes/teamRoutes");
+
 const app = express();
 
 app.use(express.json());
@@ -43,6 +45,8 @@ app.use(taskRoutes);
 app.use(profileRoutes);
 
 app.use(adminRoutes);
+
+app.use(teamRoutes);
 
 const port = 5000;
 
