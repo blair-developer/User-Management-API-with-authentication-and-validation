@@ -1,55 +1,29 @@
 const express = require("express");
-
 const path = require("path");
-
-const session = require("express-session");
-
-require("./config/db");
-
-const authRoutes = require("./routes/authRoutes");
-
-const taskRoutes = require("./routes/taskRoutes");
-
-const profileRoutes = require("./routes/profileRoutes");
-
-const adminRoutes = require("./routes/adminRoutes");
-
-const teamRoutes = require("./routes/teamRoutes");
 
 const app = express();
 
+// PORT
+const PORT = 3000;
+
+// MIDDLEWARE
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: false }));
-
+// STATIC FILES
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.static(path.join(__dirname, "publicEssentials")));
-
-//app.use("/uploads", express.static("uploads"));
-
-app.use(session({
-    secret: "mysecretkey",
-    resave: false,
-    saveUninitialized: false
-}));
-
+// VIEW ENGINE
 app.set("view engine", "ejs");
 
 app.set("views", path.join(__dirname, "views"));
 
-app.use(authRoutes);
+// HOME ROUTE
+app.get("/", (req, res) => {
+  res.render("library/index");
+});
 
-app.use(taskRoutes);
-
-app.use(profileRoutes);
-
-app.use(adminRoutes);
-
-app.use(teamRoutes);
-
-const port = 5000;
-
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+// START SERVER
+app.listen(PORT, () => {
+  console.log(`Library Management System running on port ${PORT}`);
 });
