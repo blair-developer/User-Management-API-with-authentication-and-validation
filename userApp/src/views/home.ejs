@@ -299,6 +299,57 @@
 
         </section>
 
+        <!-- MY TEAMS -->
+
+<section class="teams-section">
+
+    <div class="section-header">
+
+        <h2>My Teams</h2>
+
+    </div>
+
+    <div class="teams-grid">
+
+        <% if (teams.length === 0) { %>
+
+            <p>No teams yet 🚀</p>
+
+        <% } %>
+
+        <% teams.forEach(team => { %>
+
+            <div class="team-card">
+
+                <h3><%= team.teamName %></h3>
+
+                <p>
+                    <%= team.description %>
+                </p>
+
+                <div class="team-meta">
+
+                    <span>
+                        👥 <%= team.members.length %> Members
+                    </span>
+
+                </div>
+
+                <a
+                    href="/teams/<%= team._id %>"
+                    class="view-team-btn"
+                >
+                    Open Workspace
+                </a>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</section>
+
     </main>
 
 </div>
