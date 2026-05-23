@@ -5,28 +5,46 @@ exports.getHome = async (req, res) => {
 
     try {
 
-        // ✅ Query object for filtering
+        // =========================
+        // FILTER QUERY
+        // =========================
+
         const query = {
 
             userId: req.session.userId
 
         };
 
-        // ✅ Filter by status
+
+
+        // =========================
+        // STATUS FILTER
+        // =========================
+
         if (req.query.status) {
 
             query.status = req.query.status;
 
         }
 
-        // ✅ Filter by category
+
+
+        // =========================
+        // CATEGORY FILTER
+        // =========================
+
         if (req.query.category) {
 
             query.category = req.query.category;
 
         }
 
-        // ✅ Search by title
+
+
+        // =========================
+        // SEARCH TASK TITLE
+        // =========================
+
         if (req.query.search) {
 
             query.title = {
@@ -39,10 +57,32 @@ exports.getHome = async (req, res) => {
 
         }
 
-        // ✅ Fetch tasks
+
+
+        // =========================
+        // FETCH TASKS
+        // =========================
+
         const tasks = await Task.find(query);
 
-        // ✅ Dashboard statistics
+
+
+        // =========================
+        // FETCH USER TEAMS
+        // =========================
+
+        const teams = await Team.find({
+
+            members: req.session.userId
+
+        });
+
+
+
+        // =========================
+        // DASHBOARD STATISTICS
+        // =========================
+
         const totalTasks = tasks.length;
 
         const completedTasks = tasks.filter(
@@ -51,16 +91,25 @@ exports.getHome = async (req, res) => {
 
         ).length;
 
+
+
         const pendingTasks = tasks.filter(
 
             task => task.status === "Pending"
 
         ).length;
 
-        // ✅ Render dashboard
+
+
+        // =========================
+        // RENDER HOME
+        // =========================
+
         res.render("home", {
 
             tasks,
+
+            teams,
 
             // User info
             username: req.session.username,
@@ -82,9 +131,13 @@ exports.getHome = async (req, res) => {
 
         console.error("Error fetching tasks:", err);
 
+
+
         res.render("home", {
 
             tasks: [],
+
+            teams: [],
 
             username: req.session.username,
 
