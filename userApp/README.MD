@@ -179,3 +179,18 @@ docker-compose up
 ---
 
 # Author
+
+The flow:::::::::::::::::::::
+             USER
+              |
+        ┌──────────────┐
+        │   NGINX       │
+        └─────┬────────┘
+              │
+   ┌──────────┼──────────┐
+   │          │          │
+TASKFLOW   STUDENT     LIBRARY
+(API GW)   SERVICE     SERVICE
+   │          │          │
+   └──────────┴──────────┘
+            MONGODB
