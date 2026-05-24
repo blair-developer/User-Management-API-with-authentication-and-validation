@@ -1,16 +1,20 @@
 require("dotenv").config();
 
-const dns = require('dns');
+const dns = require("dns");
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const dbURI = process.env.MONGO_URI;
 
-mongoose.connect(dbURI)
-  .then(() => {
-    console.log("Cloud Database (userApp) Connected Successfully");
-  })
-  .catch((err) => {
-    console.error("Database cannot be Connected:", err.message);
-  });
+const connectDB = async () => {
+    try {
+        await mongoose.connect(dbURI);
+        console.log("Cloud Database Connected Successfully 🚀");
+    } catch (err) {
+        console.error("Database connection failed ❌:", err.message);
+        process.exit(1);
+    }
+};
+
+module.exports = connectDB;
