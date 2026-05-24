@@ -1,17 +1,50 @@
-version: '3.9'
+version: "3.8"
 
 services:
 
-  taskflow-app:
-
-    build: .
-
-    container_name: taskflow_container
-
+  taskflow:
+    build: ./taskflow
     ports:
-      - "5000:5000"
+      - "3000:3000"
+    depends_on:
+      - student-service
+      - library-service
+    environment:
+      - NODE_ENV=production
 
-    env_file:
-      - .env
+  student-service:
+    build: ./student-service
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/studentdb
+    depends_on:
+      - mongo
 
-    restart: always
+  library-service:
+    build: ./library-service
+    ports:
+      - "3002:3002"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/librarydb
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - taskflow
+
+volumes:
+  mongo-data:

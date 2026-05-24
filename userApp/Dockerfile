@@ -17,6 +17,7 @@ COPY . .
 EXPOSE 5000
 
 # Environment variable
+ENV NODE_ENV=production
 ENV PORT=5000
 
 # Start app

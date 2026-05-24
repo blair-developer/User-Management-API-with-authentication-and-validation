@@ -9,8 +9,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:tailwind": "tailwindcss -i ./src/input.css -o ./src/public/output.css --watch",
-    "start": "nodemon src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "student": "nodemon src/modules/students/index.js",
+    "student:start": "node src/modules/students/index.js"
   },
   "dependencies": {
     "axios": "^1.16.1",
@@ -22,6 +24,7 @@
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
+    "http-proxy-middleware": "^4.0.0",
     "joi": "^18.2.1",
     "joi-password": "^4.3.0",
     "jsonwebtoken": "^9.0.3",
