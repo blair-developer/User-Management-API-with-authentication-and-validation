@@ -1,36 +1,54 @@
-const { createLogger, transports, format } = require('winston')
-require('winston-mongodb')
+require('dotenv').config();
 
-const logger = createLogger({
-    transports: [
-        new transports.Console({
-            level: "info",
-            format: format.combine(format.timestamp(), format.json())
-        }),
-        new transports.Console({
-            level: "error",
-            format: format.combine(format.timestamp(), format.json())
-        }),
-        new transports.File({
-            filename: 'logs/logger.log',
-            level: "info",
-            maxsize: 5242880,
-            format: format.combine(
-                format.timestamp({ format: 'MMM-DD-YYYY HH:mm:ss' }),
-                format.align(),
-                format.printf(info => `level ${info.level}: ${info.timestamp} ${info.message}`)
-            ),
-        }),
+const { createLogger, transports, format } = require('winston');
+require('winston-mongodb');
+
+const mongoURL = process.env.MONGO_URL;
+
+const transportList = [
+    // Console logs
+    new transports.Console({
+        level: "info",
+        format: format.combine(
+            format.timestamp(),
+            format.json()
+        )
+    }),
+
+    // File logs
+    new transports.File({
+        filename: 'logs/logger.log',
+        level: "info",
+        maxsize: 5242880,
+        format: format.combine(
+            format.timestamp({ format: 'MMM-DD-YYYY HH:mm:ss' }),
+            format.printf(info =>
+                `level ${info.level}: ${info.timestamp} ${info.message}`
+            )
+        ),
+    })
+];
+
+// ONLY ADD MONGODB IF URL EXISTS
+if (mongoURL) {
+    transportList.push(
         new transports.MongoDB({
             level: "info",
-            db: process.env.URL,
+            db: mongoURL,
+            collection: 'logsData',
             options: {
                 useUnifiedTopology: true,
             },
-            collection: 'logsData',
-            format: format.combine(format.timestamp(), format.json())
+            format: format.combine(
+                format.timestamp(),
+                format.json()
+            )
         })
-    ]
-})
+    );
+}
 
-module.exports = logger
+const logger = createLogger({
+    transports: transportList
+});
+
+module.exports = logger;

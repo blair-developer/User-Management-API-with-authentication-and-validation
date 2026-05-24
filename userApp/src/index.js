@@ -1,29 +1,18 @@
-const express = require("express");
-const path = require("path");
+require('dotenv').config()
+const express = require('express')
 
-const app = express();
+require('./config/modelConfig')
+const mainRouter = require('./urls')
+const logger = require('./utils/logger')
 
-// PORT
-const PORT = 3000;
+const app = express()
 
-// MIDDLEWARE
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json())
+app.use('/', mainRouter)
 
-// STATIC FILES
-app.use(express.static(path.join(__dirname, "public")));
+const PORT = process.env.PORT || 9000
 
-// VIEW ENGINE
-app.set("view engine", "ejs");
-
-app.set("views", path.join(__dirname, "views"));
-
-// HOME ROUTE
-app.get("/", (req, res) => {
-  res.render("library/index");
-});
-
-// START SERVER
 app.listen(PORT, () => {
-  console.log(`Library Management System running on port ${PORT}`);
-});
+    console.log(`Server is running on ${PORT}`)
+    logger.log('info', `Server is running on ${PORT}`)
+})

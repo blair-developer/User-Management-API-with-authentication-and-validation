@@ -1,16 +1,31 @@
-const { createLogger, transports, format } = require('winston')
-require('winston-mongodb')
+require('dotenv').config();
+
+const { createLogger, transports, format } = require('winston');
+require('winston-mongodb');
+
+const mongoURL = process.env.MONGO_URL;
+
+// helper: only enable mongo if valid
+const enableMongo = mongoURL && mongoURL.startsWith("mongodb");
 
 const userLogger = createLogger({
     transports: [
         new transports.Console({
             level: "info",
-            format: format.combine(format.timestamp(), format.json())
+            format: format.combine(
+                format.timestamp(),
+                format.json()
+            )
         }),
+
         new transports.Console({
             level: "error",
-            format: format.combine(format.timestamp(), format.json())
+            format: format.combine(
+                format.timestamp(),
+                format.json()
+            )
         }),
+
         new transports.File({
             filename: 'logs/userLogger/userLogs.log',
             level: "info",
@@ -18,19 +33,27 @@ const userLogger = createLogger({
             format: format.combine(
                 format.timestamp({ format: 'MMM-DD-YYYY HH:mm:ss' }),
                 format.align(),
-                format.printf(info => `level ${info.level}: ${info.timestamp} ${info.message}`)
+                format.printf(info =>
+                    `level ${info.level}: ${info.timestamp} ${info.message}`
+                )
             ),
         }),
-        new transports.MongoDB({
-            level: "info",
-            db: process.env.URL,
-            options: {
-                useUnifiedTopology: true,
-            },
-            collection: 'userLogs',
-            format: format.combine(format.timestamp(), format.json())
-        })
-    ]
-})
 
-module.exports = userLogger
+        ...(enableMongo ? [
+            new transports.MongoDB({
+                level: "info",
+                db: mongoURL,
+                collection: 'userLogs',
+                options: {
+                    useUnifiedTopology: true,
+                },
+                format: format.combine(
+                    format.timestamp(),
+                    format.json()
+                )
+            })
+        ] : [])
+    ]
+});
+
+module.exports = userLogger;
