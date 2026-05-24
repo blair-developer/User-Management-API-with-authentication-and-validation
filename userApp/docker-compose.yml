@@ -1,50 +1,14 @@
 version: "3.8"
 
 services:
-
   taskflow:
-    build: ./taskflow
+    build: .
     ports:
       - "3000:3000"
-    depends_on:
-      - student-service
-      - library-service
-    environment:
-      - NODE_ENV=production
+    command: node src/index.js
 
-  student-service:
-    build: ./student-service
+  student:
+    build: .
     ports:
       - "3001:3001"
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/studentdb
-    depends_on:
-      - mongo
-
-  library-service:
-    build: ./library-service
-    ports:
-      - "3002:3002"
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/librarydb
-    depends_on:
-      - mongo
-
-  mongo:
-    image: mongo:6
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - taskflow
-
-volumes:
-  mongo-data:
+    command: node student/index.js
