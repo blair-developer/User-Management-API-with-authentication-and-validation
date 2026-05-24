@@ -1,18 +1,53 @@
-require('dotenv').config()
-const express = require('express')
+const express = require("express");
 
-require('./config/modelConfig')
-const mainRouter = require('./urls')
-const logger = require('./utils/logger')
+const path = require("path");
 
-const app = express()
+const session = require("express-session");
 
-app.use(express.json())
-app.use('/', mainRouter)
+const authRoutes = require("./routes/authRoutes");
 
-const PORT = process.env.PORT || 9000
+const taskRoutes = require("./routes/taskRoutes");
 
-app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`)
-    logger.log('info', `Server is running on ${PORT}`)
-})
+const profileRoutes = require("./routes/profileRoutes");
+
+const adminRoutes = require("./routes/adminRoutes");
+
+const app = express();
+
+const connectDB = require("./config/db");
+
+connectDB();
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static(path.join(__dirname, "publicEssentials")));
+
+//app.use("/uploads", express.static("uploads"));
+
+app.use(session({
+    secret: "mysecretkey",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.set("view engine", "ejs");
+
+app.set("views", path.join(__dirname, "views"));
+
+app.use(authRoutes);
+
+app.use(taskRoutes);
+
+app.use(profileRoutes);
+
+app.use(adminRoutes);
+
+const port = 5000;
+
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+});
