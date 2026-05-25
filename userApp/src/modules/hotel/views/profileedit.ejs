@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Sayfası</title>
+    <link rel="stylesheet" href="/css/pp_edit.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="background-color:white;">
+
+
+    <header class="header_" id="navigation-menu">
+      <div class="container_">
+          <nav>
+              
+              <ul class="nav-menu" style="margin-left: 250px ;">
+                <li> <a href="/#home" class="nav-link">Anasayfa</a> </li>
+                <li> <a href="/#about" class="nav-link">Hakkımızda</a> </li>
+                <li> <a href="/#rooms" class="nav-link">Odalarımız</a> </li>
+                <li> <a href="/#restaurant" class="nav-link">Restorantımız</a> </li>
+                <li> <a href="/#gallary" class="nav-link">Galleri</a> </li>
+                <li> <a href="/#contact" class="nav-link">İletişim</a> </li>
+              </ul>
+              <div class="hambuger">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+              </div>
+          </nav>
+      </div>
+  </header>
+  <script>
+      const hambuger = document.querySelector('.hambuger');
+      const navMenu = document.querySelector('.nav-menu');
+  
+      hambuger.addEventListener("click", mobileMenu);
+  
+      function mobileMenu() {
+        hambuger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      }
+  
+      const navLink = document.querySelectorAll('.nav-link');
+      navLink.forEach((n) => n.addEventListener("click", closeMenu));
+  
+      function closeMenu() {
+        hambuger.classList.remove("active");
+        navMenu.classList.remove("active");
+      }
+  </script>
+
+    <div style="background-color: #81ccc8; color: white;"
+    class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row"
+  >
+    <h2 class="h5 mb-3 mb-lg-0"">
+      <a href="../../pages/admin/customers.html" class="text-muted"
+        ><i class="bi bi-arrow-left-square me-2"></i
+      ></a>
+      Bilgileri Düzenle
+    </h2>
+  </div>
+  <form action="/rooms/profile/edit" method="post">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div style="background-color: #ffffff;" class="card-body">
+                <h3 class="h6 mb-4">Müşteri Bilgileri</h3>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Ad Soyad</label>
+                      <input type="text" name="name" class="form-control" value="<%- user.name %>"/>
+                    </div>
+                  </div><div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">TC Kimlik No</label>
+                      <input type="text" class="form-control" name="tc" value="<%- user.tc %>" />
+                    </div>  <div class="col-lg-6">
+
+                  </div>
+                </div>
+                
+                  </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">E-Posta</label>
+                      <input type="email" name="email" class="form-control" value="<%- user.email %>" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label">Telefon No</label>
+                      <input type="text" name="phone" class="form-control" value="<%- user.phone %>" />
+                    </div>
+                  </div>
+                  
+                
+                  
+                </div>
+              </div>
+            </div>
+            <div class="card mb-4">
+              <div style="background-color: #ffffff;" class="card-body">
+                <h3 class="h6 mb-4">Adres Bilgileri</h3>
+                <div class="mb-3">
+                  <label class="form-label">Adresinizi Girin</label>
+                  <input type="text" name="address" class="form-control" value="<%- user.address %>" />
+                </div>
+                
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+               <div style="float:left; margin-left: 4rem;"
+          class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+          <div class="hstack gap-3">
+            <input style="background-color: #d6c580;"
+                      class="btn btn-info"
+                      target="__blank"
+                      type="submit"
+                      >Kaydet</input>
+            <a style="background-color:#ffffff;"
+                    class="btn btn-info"
+                    target="__blank"
+                    href="/"
+                    >Vazgeç</a>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+    <div class="container-fluid">
+      <div class="container"> 
+  </body>
+
+  <div class="bottom_image">
+    <img src="./rooms_bottom_image.jpg" alt="">
+</div>
+
+<footer>
+    <div class="container_ grid top">
+      <div class="box">
+        <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/48/000000/external-hotel-hotel-services-and-city-elements-flatart-icons-flat-flatarticons-1.png" />
+        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>Accepted payment methods</p>
+        <div class="payment grid">
+          <img src="https://img.icons8.com/color/48/000000/visa.png" />
+          <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
+          <img src="https://img.icons8.com/color-glass/48/000000/paypal.png" />
+          <img src="https://img.icons8.com/fluency/48/000000/amex.png" />
+        </div>
+      </div>
+
+     
+    
+      <div class="box">
+        <h3>Müşteriler İçin</h3>
+        <ul>
+          <li>Rant Otel Hakkında</li>
+          <li>Müşteri Hizmetleri</li>
+          <li>Kurumsal Hesap</li>
+          <li>Finansal Bilgiler</li>
+          <li>Şartlar ve Koşullar</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Bizimle İletişime Geçin</h3>
+
+        <ul>
+          <li>İzmir Çeşme Sahil Yanı Barlar Sokağının Aşşağısı Posta Kodu 3162</li>
+          <li><i class="far fa-envelope"></i>ranthotel@gmail.com </li>
+          <li><i class="far fa-phone-alt"></i>444 222 44 44 </li>
+          <li><i class="far fa-phone-alt"></i>444 222 44 55 </li>
+          <li><i class="far fa-comments"></i>7 24 Açık Servis </li>
+        </ul>
+      </div>
+    </div>
+</footer>
+</html>
